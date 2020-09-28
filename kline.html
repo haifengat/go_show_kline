@@ -1,0 +1,46 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Awesome go-echarts</title>
+    <script src="https://go-echarts.github.io/go-echarts-assets/assets/echarts.min.js"></script>
+    <link href="https://go-echarts.github.io/go-echarts-assets/assets/bulma.min.css" rel="stylesheet">
+</head>
+
+<body>
+<div class="select" style="margin-right:10px; margin-top:10px; position:fixed; right:10px;">
+    <select onchange="window.location.href=this.options[this.selectedIndex].value">
+        <option value="/bar">Bar-(柱状图)</option>
+    </select></div>
+
+    
+<div class="container">
+    <div class="item" id="mFMOUdzHvFJA"
+         style="width:900px;height:500px;"></div>
+</div>
+<script type="text/javascript">
+    "use strict";
+    var myChart_mFMOUdzHvFJA = echarts.init(document.getElementById('mFMOUdzHvFJA'), "white");
+    var option_mFMOUdzHvFJA = {
+        title: {},
+        tooltip: {},
+        legend: {},
+        dataZoom:[{"type":"inside","start":50,"end":100,"xAxisIndex":[0]},{"type":"slider","start":50,"end":100,"xAxisIndex":[0]}],
+        xAxis: [{"data":["20200927"],"splitNumber":20,"splitArea":{"show":false,},"splitLine":{"show":false,}}],
+        yAxis: [{"axisLabel":{"show":true},"scale":true,"splitArea":{"show":false,},"splitLine":{"show":false,}}],
+        series: [
+        {"name":"kline","type":"candlestick","data":[[10,12,15,18]],"itemStyle":{"color":"#ec0000","color0":"#00da3c","borderColor":"#8A0000","borderColor0":"#008F28"},"label":{"show":false},"emphasis":{"label":{"show":false},},"markLine":{"label":{"show":false}},"markPoint":{"data":[{"name":"highest value","type":"max","valueDim":"highest"},{"name":"lowest value","type":"min","valueDim":"lowest"}],"label":{"show":true}},},
+        ],
+        color: ["#c23531","#2f4554","#61a0a8","#d48265","#91c7ae","#749f83","#ca8622","#bda29a","#6e7074","#546570","#c4ccd3"],
+    };
+    myChart_mFMOUdzHvFJA.setOption(option_mFMOUdzHvFJA);
+</script>
+
+    <br/>
+<style>
+    .container {display: flex;justify-content: center;align-items: center;}
+    .item {margin: auto;}
+</style>
+</body>
+</html>
