@@ -10,12 +10,14 @@ import (
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/orm"
 	"github.com/go-echarts/go-echarts/charts"
+
+	// postgres
 	_ "github.com/lib/pq"
 )
 
 var insts []string
 
-//
+// KLineController KLine
 type KLineController struct {
 	beego.Controller
 }
@@ -26,7 +28,12 @@ func init() {
 	// orm.RegisterModel(new(Min))
 	orm.RegisterDriver("postgres", orm.DRPostgres)
 	// 注册数据库
-	err := orm.RegisterDataBase("default", "postgres", "user=postgres password=123456 dbname=postgres host=172.19.129.98 port=15432 sslmode=disable")
+	pgConfig := "postgres://postgres:123456@172.19.129.98:15432/postgres?sslmode=disable"
+	if tmp := os.Getenv("pgConfig"); tmp != "" {
+		pgConfig = tmp
+	}
+
+	err := orm.RegisterDataBase("default", "postgres", pgConfig) // "user=postgres password=123456 dbname=postgres host=172.19.129.98 port=15432 sslmode=disable")
 	if err != nil {
 		fmt.Println(err)
 		beego.Error(err)

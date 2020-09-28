@@ -19,12 +19,17 @@ COPY tests ./tests
 COPY views ./views
 
 RUN go mod download; \
-    CGO_ENABLED=0 GOARCH=amd64 GOOS=linux go build -a -o run .;
+    go get github.com/beego/bee; \
+    bee pack -be GOOS=linux -a run
+    # CGO_ENABLED=0 GOARCH=amd64 GOOS=linux go build -a -o run .;
 
 FROM alpine:3.11 AS final
 
 WORKDIR /app
-COPY --from=builder /build/run /app/
+COPY --from=builder /build/run.tar.gz /app/
+RUN tar -xf ./run.tar.gz && rm -rf ./run.tar.gz
+# 获取最新数据
+ADD http://data.haifengat.com/instrument.csv .
 
 #USER app-runner
 ENTRYPOINT ["./run"]
