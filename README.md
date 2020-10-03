@@ -20,9 +20,6 @@ services:
             - 8080=8080
         environment:
             - TZ=Asia/Shanghai
-            - Port=8080
-            # 运行模式 dev/prod/test
-            - RunMode=dev
             # postgres  future_min配置
             - pgConfig=postgres://postgres:123456@172.19.129.98:15432/postgres?sslmode=disable
 ```

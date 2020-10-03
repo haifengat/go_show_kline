@@ -81,7 +81,7 @@ func (c *KLineController) Show() {
 
 	if len(inst) > 0 {
 		// var mins []*Min
-		num, err := o.Raw(fmt.Sprintf("select * from future.future_min where \"Instrument\"='%s'", inst)).Values(&maps)
+		num, err := o.Raw(fmt.Sprintf(`select * from future.future_min where "Instrument"='%s' order by "DateTime"`, inst)).Values(&maps)
 		if err != nil {
 			beego.Warning("Returned Rows Num: %s, %s", num, err)
 		} else {
@@ -148,6 +148,7 @@ func klineStyle() *charts.Kline {
 	kline.AddXAxis(x)
 	kline.AddYAxis("kline", y)
 	kline.SetGlobalOptions(
+		charts.TooltipOpts{Show: true, Trigger: "axis"}, //TriggerOn: "mousemove | click"
 		// charts.TitleOpts{Title: "Kline-不同风格"},
 		charts.XAxisOpts{SplitNumber: 20},
 		charts.YAxisOpts{Scale: true},
